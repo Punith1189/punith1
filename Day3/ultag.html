@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <title>Document</title>
+    <style>
+        ul{
+            list-style: none;
+            margin: 0;
+            padding:0;
+            width:200px;
+            background-color:none;
+            border: 1px solid #555;
+        }
+        li a {
+          display: block;
+          width: 60px;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+          li {
+            text-align: center;
+            border-bottom: 1px solid #555;
+          }
+        
+        li a.active {
+            background-color: #04AA6D;
+            color:white
+        }
+        li a:hover:not(.active){
+            background-color: aqua;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <listyle="float:right"><a class="active" href="#about">About</a></li>
+    </ul>
+</body>
+</html>
