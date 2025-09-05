@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <script type="text/javascript">
+      function largest()
+      {
+        var num=parseInt(document.getElementById("num").value);
+        ld=0;
+        while(num>0){
+            rem=num % 10;
+            if(rem>ld)ld=rem;
+            num=Math.floor(num/10);
+        }
+        document.getElementById("txtAns").value=ld;
+      }
+      function smallest()
+      {
+        var num=parseInt(document.getElementById("num").value);
+        ld=9;
+        while(num>0){
+            rem=num % 10;
+            if(rem<ld)ld=rem;
+            num=Math.floor(num/10);
+        }
+        document.getElementById("txtAns").value=ld;
+      }
+      function sumDigit()
+      {
+        var num=parseInt(document.getElementById("num").value);
+
+      }
+
+</script>
+</head>
+<body>
+    <p>enter the number:<input id="num"></p>
+    <button onclick="sumDigit()">SumDigit</button>
+    <button onclick="reverse()">reverse</button>
+    <button onclick="largest()">largest</button>
+    <button onclick="smallest()">smallest</button>
+    <p>Ans:<input id="txtAns"></p>
+ 
+</body>
+</html>
