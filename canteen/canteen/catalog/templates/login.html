@@ -1,0 +1,175 @@
+{% block content}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(232, 235, 228);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: aqua;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(143, 9, 9, 0.1);
+            width: 760px;
+            height: 550px;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+          
+        }
+        input {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            width: 20%;
+            padding: 10px;
+            background:blue;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            
+        }
+        .btn>a{
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+           margin-bottom: 10px;
+        }
+        .checkbox-group input {
+            width:auto;
+            margin-left: 5px;
+            margin-bottom: 1px;
+
+        }
+        .forgot-password {
+            text-align:left;
+            margin-top: 10px;
+        }
+        .forgot-password a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+            text-align: left;
+        }
+        h3{
+            text-align: left;
+            top: 1px;
+              margin: 0; 
+            font-size: 24px; 
+            text-align: left;   
+        }
+       
+        font{
+            position: absolute;
+            top:50px;
+            font-size: 11px;
+            z-index: 1;
+        }
+        label{
+            text-align: left;
+        }
+        p{
+            text-align: center;
+        }
+        .logo{
+            width: 150px;
+            height: 140px;
+            z-index: 1;
+            margin-right: 100px;
+            top:3px;
+           display: flex;
+        }
+        .head {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            text-align: center; 
+        }
+        .head h3 {
+            margin: 0; 
+            font-size: 24px; 
+            text-align: left;
+           
+        }
+        @media print{
+  .no-print{
+    display: none;
+
+  }           
+}
+       
+    </style>
+    
+</head>
+<body >
+    
+    <div class="login-container">
+        <div class="head">
+            
+            <image src="logo.jpg"width=180px height="190px" class="logo"/>
+             
+        <h3>Mother Theresa Institute Of Computer Application</h3>
+               </div>    
+        <form action="/submit-login" method="POST">
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">Remember Me</label>                            
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <button type="submit" class="btn"> 
+                <a href="login.html" >New User</a>
+            </button>
+             
+            <div class="forgot-password">
+                <a href="#" align="left">Forgot Password?</a>
+            </div>     
+        </br>
+        <button onclick="print()" class="no-print">Print</button>>
+                
+        </form>
+      
+</div>
+</div>
+</body>
+</html>
+{% endlock %}

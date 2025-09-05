@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bill Payment - Mother Theresa Canteen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        .bill-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+        .print-btn {
+            background-color: #007bff;
+        }
+        .print-btn:hover {
+            background-color: #0056b3;
+        }
+        @media print {
+            .btn { display: none; }
+            body { background-color: white; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bill-container">
+        <h2>Mother Theresa Canteen - Bill Payment</h2>
+        <p style="text-align: center;">Palamaner</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price (each)</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ item.product.price }}</td>
+                    <td>₹{{ item.item_total }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="total">Grand Total</td>
+                    <td class="total">₹{{ total_price }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form method="post" action="{% url 'confirm_payment' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn">Confirm Payment</button>
+        </form>
+        <button onclick="window.print();" class="btn print-btn">Print Bill</button>
+    </div>
+
+</body>
+</html>
