@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+
+    .form-container {
+      padding: 20px;
+      border: 1px solid #aaa;
+      background-color: white;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 20px;
+      background-color: #d3c942;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .table-container {
+      border: 1px solid #000;
+      padding: 10px;
+      background-color: white;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 500px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #ffc107;
+      font-weight: bold;
+    }
+
+    tr:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2>Enter Student Details</h2>
+      <form id="studentForm">
+        <input type="text" id="studentName" placeholder="Enter Student Name" required><br>
+        <input type="text" id="collegeName" placeholder="Enter College Name" required><br>
+        <input type="text" id="course" placeholder="Enter Course Name" required><br>
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table id="studentTable">
+        <tr>
+          <th>Student Name</th>
+          <th>College</th>
+          <th>Course</th>
+          <th>Action</th>
+        </tr>
+       
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('studentForm');
+    const table = document.getElementById('studentTable');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let editRow = null;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('studentName').value;
+      const college = document.getElementById('collegeName').value;
+      const course = document.getElementById('course').value;
+
+      if (editRow) {
+        
+        editRow.cells[0].innerText = name;
+        editRow.cells[1].innerText = college;
+        editRow.cells[2].innerText = course;
+        submitBtn.textContent = 'Submit';
+        editRow = null;
+      } else {
+        
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+          <td>${name}</td>
+          <td>${college}</td>
+          <td>${course}</td>
+          <td><button onclick="deleteRow(this)">Delete</button></td>
+        `;
+
+      
+        newRow.addEventListener('click', function (e) {
+          if (e.target.tagName !== 'BUTTON') {
+            loadRowIntoForm(newRow);
+          }
+        });
+      }
+
+      form.reset();
+    });
+
+    function deleteRow(btn) {
+      const row = btn.parentNode.parentNode;
+      if (editRow === row) {
+        form.reset();
+        submitBtn.textContent = 'Submit';
+        editRow = null;
+      }
+      row.remove();
+    }
+
+    function loadRowIntoForm(row) {
+      editRow = row;
+      document.getElementById('studentName').value = row.cells[0].innerText;
+      document.getElementById('collegeName').value = row.cells[1].innerText;
+      document.getElementById('course').value = row.cells[2].innerText;
+      submitBtn.textContent = 'Update';
+    }
+  </script>
+</body>
+</html>
